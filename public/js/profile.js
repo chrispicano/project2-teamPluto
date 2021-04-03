@@ -1,14 +1,15 @@
 const newFormHandler = async (event) => {
   event.preventDefault();
 
-  const name = document.querySelector('#project-name').value.trim();
-  const needed_funding = document.querySelector('#project-funding').value.trim();
-  const description = document.querySelector('#project-desc').value.trim();
+  const name = document.querySelector('#profile-name').value.trim();
+  const system_selection = document.querySelector('#profile-system').value.trim();
+  const description = document.querySelector('#profile-desc').value.trim();
+  console.log(name, system_selection, description);
 
-  if (name && needed_funding && description) {
+  if (name && system_selection && description) {
     const response = await fetch(`/api/projects`, {
       method: 'POST',
-      body: JSON.stringify({ name, needed_funding, description }),
+      body: JSON.stringify({ name, system_selection, description }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -17,7 +18,8 @@ const newFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace('/profile');
     } else {
-      alert('Failed to create project');
+      alert('Failed to create profile');
+      console.log(response);
     }
   }
 };
@@ -43,5 +45,5 @@ document
   .addEventListener('submit', newFormHandler);
 
 document
-  .querySelector('.project-list')
-  .addEventListener('click', delButtonHandler);
+  .querySelector('#profile-system')
+  

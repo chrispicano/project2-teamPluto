@@ -3,14 +3,22 @@ const { Project } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
+  console.log("Project post");
+  console.log(req.body);
+  console.log(req.session.user_id);
   try {
-    const newProject = await Project.create({
+    
+    var newProject = await Project.create({
       ...req.body,
       user_id: req.session.user_id,
+
     });
+    console.log(newProject.toJSON());
 
     res.status(200).json(newProject);
   } catch (err) {
+    console.log(err);
+    
     res.status(400).json(err);
   }
 });
