@@ -10,21 +10,34 @@
 </head>
 
 <body>
-  <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <span role="img" aria-label="money">💸</span>
-        <a href="/">Video Gs!</a>
-      </h1>
-      <nav>
-        <!-- Conditionally render login or logout links -->
+  <div class="topnav">
+  <a class="active" 
+   <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
         <a href="/profile">profile</a> |
         <button class="no-button" id="logout">logout</button>
         {{else}}
         <a href="/login">login</a>
         {{/if}}
-      </nav>
+  <!-- Searchbar -->
+  <div id="searchWrapper">
+                <input
+                    type="text"
+                    name="searchBar"
+                    id="searchBar"
+                    placeholder="search for a game"
+                />
+            </div>
+            <ul id="gamesList"></ul>
+            
+</div>
+  <div class="flex-column justify-space-around">
+    <header class="display-flex justify-space-between align-center p-2">
+      <h1>
+        <span role="img" aria-label="money">💸</span>
+        <a href="/">Video Gs!</a>
+      </h1>
+      
     </header>
     <main class="container container-fluid mt-5">
       <!-- Render the sub layout -->
@@ -39,6 +52,7 @@
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
+  {{!-- <script src="/js/login.js"></script> --}}
 </body>
 
 </html>
